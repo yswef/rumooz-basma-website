@@ -1,0 +1,5 @@
+data/*.db*
+data/c_*.html
+uploads/*
+!uploads/.htaccess
+!data/.htaccess
