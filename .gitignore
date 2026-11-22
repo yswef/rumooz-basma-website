@@ -1,5 +1,14 @@
-data/*.db*
+# قاعدة البيانات (فيها كلمة المرور والزوار والطلبات) — لا ترفعها أبداً
+data/*.db
+data/*.db-*
+!data/.htaccess
 
+# الصور التي ترفعها من لوحة التحكم (تبقى على السيرفر)
 uploads/*
 !uploads/.htaccess
-!data/.htaccess
+
+# ملفات المراجعة والنظام
+rumooz-preview.html
+.DS_Store
+Thumbs.db
+*.log
