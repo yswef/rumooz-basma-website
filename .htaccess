@@ -1,11 +1,15 @@
 Options -Indexes
 RewriteEngine On
+# Uncomment once HTTPS works on the host (avoid redirect loops behind a proxy/CDN):
+# RewriteCond %{HTTPS} off
+# RewriteCond %{HTTP:X-Forwarded-Proto} !https
+# RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^ index.php [L]
-<Files "inc.php">
+<FilesMatch "^(inc|config)\.php$">
 Require all denied
-</Files>
+</FilesMatch>
 <IfModule mod_headers.c>
 Header set X-Content-Type-Options "nosniff"
 Header set X-Frame-Options "SAMEORIGIN"
@@ -21,4 +25,6 @@ ExpiresByType image/svg+xml "access plus 1 year"
 ExpiresByType image/webp "access plus 1 year"
 ExpiresByType image/jpeg "access plus 1 year"
 ExpiresByType image/png "access plus 1 year"
+ExpiresByType application/javascript "access plus 1 week"
+ExpiresByType text/javascript "access plus 1 week"
 </IfModule>
